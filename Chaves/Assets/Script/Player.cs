@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
         player = GetComponent<SpriteRenderer>();
         animacao = GetComponent<Animator>();
         body = gameObject.GetComponent<Rigidbody2D>();
+        groundCheck = true;
     }
 
     // Update is called once per frame
@@ -46,9 +47,9 @@ public class Player : MonoBehaviour
             player.flipX = true;
         }
 
-        if(Input.GetButtonUp("Jump") && groundCheck == true)
+        if(Input.GetButtonDown("Jump") && groundCheck == true)
         {
-            groundCheck = true;
+            groundCheck = false;
             body.AddForce(new Vector2(0, forcejump));
         }
        
@@ -71,6 +72,11 @@ public class Player : MonoBehaviour
         {
             Destroy(this.gameObject);
             print("Game Over!");
+        }
+
+        if (collision.gameObject.tag == "chao")
+        {
+            groundCheck = true;
         }
 
     }
