@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float forcejump;
+    public static float playerY, playerX;
     
 
     bool groundCheck;
@@ -26,6 +27,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerX = transform.position.x;
+        playerY = transform.position.y;
+
         if ((Input.GetKey(KeyCode.LeftArrow)) || (Input.GetKey(KeyCode.RightArrow)))
         {
             animacao.SetBool("move", true);
